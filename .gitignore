@@ -19,6 +19,26 @@
 *.tar.gz
 *.rar
 
+.settings/ 
+.metadata 
+.project 
+.classpath 
+*.class 
+.target 
+target/
+target/*
+node_modules/
+/utils
+*.min.js
+*.css
+!**/assets*/**
+**/assets/libs/*
+!**/dc-web-architecture
+**/assets*/css/*.css
+package-lock.json
+utils
+dependency-reduced-pom.xml
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+/target/
