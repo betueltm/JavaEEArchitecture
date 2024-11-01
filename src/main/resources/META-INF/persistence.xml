@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+    version="2.1">
+  <persistence-unit name="JAVATESTS-PU">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+    <jta-data-source>java:jboss/datasources/Postgresql</jta-data-source>
+
+<!--     <jar-file>./JavaTests.jar</jar-file> -->
+
+    <properties>
+      <property name="hibernate.jpa.compliance.proxy" value="false"/>
+      <property name="javax.persistence.lock.timeout" value="10000"/>
+      <property name="hibernate.jdbc.use_streams_for_binary" value="false" />
+      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+      <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+      <property name="hibernate.show_sql" value="true" />
+      <property name="hibernate.format_sql" value="true" />
+      <property name="hibernate.generate_statistics" value="true"/>
+      <property name="jboss.entity.manager.jndi.name" value="java:app/EntityManager"/>
+      <property name="hibernate.criteria.literal_handling_mode" value="bind" /> 
+      <property name="hibernate.id.new_generator_mappings" value="true" />
+      <property name="hibernate.id.optimizer.pooled.preferred" value="none" />
+
+	  <property name="hibernate.cache.use_second_level_cache" value="true"/>
+	  <property name="hibernate.cache.region.factory_class" value="infinispan"/>
+    </properties>
+  </persistence-unit>
+</persistence>

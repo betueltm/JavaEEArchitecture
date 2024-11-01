@@ -3,7 +3,27 @@
   <groupId>com.betueltm.javatests</groupId>
   <artifactId>javatests</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   <name>JavaTests</name>
   <description>			</description>
+  <dependencies>
+	  	<dependency>
+	        <groupId>javax</groupId>
+	        <artifactId>javaee-api</artifactId>
+	        <version>7.0</version>
+	        <scope>provided</scope>
+	    </dependency>
+	    <dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <version>5.3.14.Final</version>
+		    <scope>provided</scope>
+		</dependency>
+
+		<dependency>
+		  <groupId>org.infinispan</groupId>
+		  <artifactId>infinispan-hibernate-cache-v53</artifactId>
+		  <version>13.0.22.Final</version>
+		</dependency>
+  </dependencies>
 </project>
