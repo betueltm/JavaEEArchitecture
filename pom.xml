@@ -25,5 +25,20 @@
 		  <artifactId>infinispan-hibernate-cache-v53</artifactId>
 		  <version>13.0.22.Final</version>
 		</dependency>
+		<dependency>
+	        <groupId>org.infinispan</groupId>
+	        <artifactId>infinispan-client-hotrod</artifactId>
+	        <version>13.0.22.Final</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.infinispan</groupId>
+	        <artifactId>infinispan-core</artifactId>
+	        <version>13.0.22.Final</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.hibernate</groupId>
+	        <artifactId>hibernate-infinispan</artifactId>
+        	<version>5.3.14.Final</version>
+    	</dependency>
   </dependencies>
 </project>

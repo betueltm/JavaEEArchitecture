@@ -1,9 +1,11 @@
 package betueltm.javatests;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
+@Cacheable
 public class Car {
 	
 	@Id
