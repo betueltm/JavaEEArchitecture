@@ -1,7 +1,7 @@
 package betueltm.repository;
 
-import betueltm.javatests.Car;
-import betueltm.persistence.Repository;
+import betueltm.architecture.persistence.Repository;
+import betueltm.model.Car;
 
 public class CarRepository extends Repository<Car> {
 

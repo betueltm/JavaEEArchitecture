@@ -1,45 +1,35 @@
-package betueltm.javatests;
+package betueltm.api.dto;
 
-import javax.persistence.Cacheable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.io.Serializable;
 
-@Entity
-@Cacheable
-public class Car {
-	
-	@Id
+public class CarDTO implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String color;
 	private String model;
-
-	public Car(){ }
 	
-    public Car(String color){
-        this.color = color;
-    }
-
 	public Long getId() {
 		return id;
 	}
-
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public String getColor() {
 		return color;
 	}
-
+	
 	public void setColor(String color) {
 		this.color = color;
 	}
-
+	
 	public String getModel() {
 		return model;
 	}
-
+	
 	public void setModel(String model) {
 		this.model = model;
-	}	    
+	}
 }
