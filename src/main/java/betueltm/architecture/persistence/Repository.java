@@ -1,13 +1,15 @@
 package betueltm.architecture.persistence;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.TypedQuery;
 
-import betueltm.architecture.cache.CacheProviderFactory;
+import betueltm.architecture.cache.CacheFactory;
 
 public class Repository<T extends Identifier<Long>> {
 	
@@ -42,7 +44,7 @@ public class Repository<T extends Identifier<Long>> {
 	}
 	
 	private T findInCache(Long primaryKey) {
-		return CacheProviderFactory.getCache().getValueAsObject(primaryKey.toString(), entityClass);
+		return CacheFactory.getCache().getValue(primaryKey.toString(), entityClass);
 	}
 
 	private <E> E find(Class<E> entityClass, Long primaryKey) {
@@ -59,6 +61,19 @@ public class Repository<T extends Identifier<Long>> {
 	}
 
 	private void insertOrUpdateCache(T entity) {
-		CacheProviderFactory.getCache().setValue(entity.getId().toString(), entity);
+		CacheFactory.getCache().setValue(entity.getId().toString(), entity);
+	}
+	
+	public TypedQuery<T> createTypedQuery(StringBuilder sqlStringBuilder){
+		return createTypedQuery(sqlStringBuilder.toString());
+	}
+	
+	private TypedQuery<T> createTypedQuery(String sqlString) {
+		TypedQuery<T> typedQuery = getEntityManager().createQuery(sqlString, entityClass);
+		return typedQuery;
+	}
+	
+	protected <C> List<C> getResultList(TypedQuery<C> typedQuery) {
+	  return typedQuery.getResultList();
 	}
 }

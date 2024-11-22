@@ -1,5 +1,7 @@
 package betueltm.api.resources;
 
+import java.util.List;
+
 import javax.annotation.ManagedBean;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -11,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import betueltm.api.dto.CarDTO;
+import betueltm.architecture.cache.CacheFactory;
 import betueltm.model.Car;
 import betueltm.repository.CarRepository;
 
@@ -25,9 +28,9 @@ public class CarResource {
 	@Path("test")
 	public String test() {
 		CarRepository carRepository = new CarRepository();
-		Car car = carRepository.find(1L);
-		
-		return "car " + car.getId() + ", " + car.getColor() + ", "+ car.getModel() + " ";
+		List<Car> allCars = carRepository.findAll();
+		CacheFactory.getCache().setValue("cars", allCars);
+		return "ok";
 	}
 	
 	@GET

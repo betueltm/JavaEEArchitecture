@@ -1,6 +1,6 @@
 package betueltm.architecture.cache;
 
-public class CacheProviderFactory {
+public class CacheFactory {
 
 	public static Cache getCache() {
 		//TODO: check if the cache is enabled in the application property
