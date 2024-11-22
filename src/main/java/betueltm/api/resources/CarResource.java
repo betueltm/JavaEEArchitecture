@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import betueltm.api.dto.CarDTO;
+import betueltm.architecture.cache.Cache;
 import betueltm.architecture.cache.CacheFactory;
 import betueltm.model.Car;
 import betueltm.repository.CarRepository;
@@ -29,9 +30,14 @@ public class CarResource {
 	public String test() {
 		CarRepository carRepository = new CarRepository();
 		List<Car> allCars = carRepository.findAll();
-		CacheFactory.getCache().setValue("cars", allCars);
+		
+		Cache cache = CacheFactory.getCache();
+		for (Car car : allCars) {
+			cache.setValue(car.getId().toString(), car);
+		}
+		
 		return "ok";
-	}
+	}	
 	
 	@GET
 	@Path("{id}")

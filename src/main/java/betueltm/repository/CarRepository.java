@@ -15,7 +15,7 @@ public class CarRepository extends Repository<Car> {
 
 	public List<Car> findAll() {
 		StringBuilder query = new StringBuilder();
-		query.append("select * from Car");
+		query.append("select car from Car car");
 		TypedQuery<Car> typedQuery = createTypedQuery(query);
 		return getResultList(typedQuery);
 	}
