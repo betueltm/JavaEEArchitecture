@@ -1,4 +1,4 @@
-package betueltm.javatests;
+package betueltm.model;
 
 public class Draft {
 	public static void main(String[] args) {

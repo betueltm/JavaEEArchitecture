@@ -1,10 +1,16 @@
-package betueltm.javatests;
+package betueltm.model;
+
+import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import betueltm.architecture.persistence.Identifier;
+
 @Entity
-public class Car {
+public class Car implements Identifier<Long>,Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	private Long id;
