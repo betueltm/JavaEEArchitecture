@@ -52,5 +52,4 @@ public class CustomSerializationMarshaller extends AbstractMarshaller {
 	    baos.close();
 	    return ByteBufferImpl.create(baos.toByteArray());
 	}
-
 }

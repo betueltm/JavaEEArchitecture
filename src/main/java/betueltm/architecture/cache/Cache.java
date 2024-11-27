@@ -2,11 +2,10 @@ package betueltm.architecture.cache;
 
 public interface Cache {
 
-	Cache getInstance();
-	void setValue(String key, String value, Class<?> clazz);
-	void setValue(String key, Object value);
-	<T> T getValue(String key, Class<T> clazz);
-	void del(String key, Class<?> clazz);
+	Object get(Object key);
+	<T> T get(Object key, Class<T> type);
+	void put(Object key, Object value);
+	void evict(Object key);
 	
 	default String addClassNameToKey(String key, Class<?> clazz) {
 		String className = clazz.getName();

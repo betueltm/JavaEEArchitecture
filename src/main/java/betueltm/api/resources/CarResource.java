@@ -12,6 +12,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.infinispan.query.dsl.QueryResult;
+
 import betueltm.api.dto.CarDTO;
 import betueltm.architecture.cache.Cache;
 import betueltm.architecture.cache.CacheFactory;
@@ -35,6 +37,11 @@ public class CarResource {
 		for (Car car : allCars) {
 			cache.setValue(car.getId().toString(), car);
 		}
+		
+		StringBuilder cacheQuery = new StringBuilder();
+		cacheQuery.append("from ").append(Car.class.getName());
+		
+		List<Car> allCachedCars = cache.getResultList(cacheQuery);
 		
 		return "ok";
 	}	
