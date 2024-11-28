@@ -12,4 +12,13 @@ public class CacheInterceptor extends AbstractCacheInterceptor {
 		return invocationResult;
 	}
 
+	private Object generateKey(CacheOperationContext context) {
+		//TODO : verify if this will be sufficient
+		return context.hashCode();
+	}
+
+	private Cache resolveCache(CacheOperationContext context) {
+		//TODO : implement a better strategy
+		return new CacheInfinispan();
+	}
 }
