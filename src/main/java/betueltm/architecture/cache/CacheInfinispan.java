@@ -18,7 +18,7 @@ public class CacheInfinispan implements Cache {
 	private void configureCache() {
 		ConfigurationBuilder clientBuilder = new ConfigurationBuilder();
 		clientBuilder.clientIntelligence(ClientIntelligence.BASIC);
-		clientBuilder.addCluster("infinispan-site-A").addClusterNode("", 11222);
+		clientBuilder.addCluster("infinispan-site-A").addClusterNode("localhost", 11222);
 		clientBuilder.security().authentication().saslMechanism("SCRAM-SHA-512").username("admin").password("password");
 		clientBuilder.marshaller(new CustomSerializationMarshaller());
 		remoteCacheManager = new RemoteCacheManager(clientBuilder.build());

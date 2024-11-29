@@ -1,12 +1,13 @@
 package betueltm.architecture.cache;
 
-public abstract class AbstractCacheInvoker {
+public abstract class CacheInvoker {
 
 	protected Object doGet(Cache cache, Object key) {
 		try {
 			return cache.get(key);
 		} catch (RuntimeException runtimeException) {
 			// TODO: If the exception is handled, return a cache miss
+			runtimeException.printStackTrace();
 			return null;
 		}
 	}

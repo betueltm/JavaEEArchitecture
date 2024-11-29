@@ -7,6 +7,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.infinispan.commons.configuration.ClassWhiteList;
 import org.infinispan.commons.dataconversion.MediaType;
@@ -23,7 +25,7 @@ public class CustomSerializationMarshaller extends AbstractMarshaller {
 	
 	public CustomSerializationMarshaller() {
 		this.whiteList = new ClassWhiteList();
-		whiteList.addClasses(Car.class);
+		whiteList.addClasses(Car.class, List.class, ArrayList.class);
 	}
 
 	@Override

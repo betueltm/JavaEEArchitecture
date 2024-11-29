@@ -1,23 +1,15 @@
 package betueltm.architecture.cache;
 
-public class CacheInterceptor extends AbstractCacheInterceptor {
+public abstract class CacheInterceptor extends CacheInvoker {
 
-	@Override
-	protected Object invoke(CacheOperationContext context, CacheOperationInvoker invoker) {
-		Object invocationResult = invoker.invoke();
-		
-		Object key = generateKey(context);
-		Cache cache = resolveCache(context);
-		doPut(cache, key, invocationResult);
-		return invocationResult;
-	}
-
-	private Object generateKey(CacheOperationContext context) {
-		//TODO : verify if this will be sufficient
+	protected abstract Object invoke(CacheOperationContext context, CacheOperationInvoker invoker);
+	
+	protected Object generateKey(CacheOperationContext context) {
+		//TODO : make sure that this will be sufficient
 		return context.hashCode();
 	}
 
-	private Cache resolveCache(CacheOperationContext context) {
+	protected Cache resolveCache(CacheOperationContext context) {
 		//TODO : implement a better strategy
 		return new CacheInfinispan();
 	}

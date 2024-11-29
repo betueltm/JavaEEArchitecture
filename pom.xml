@@ -43,6 +43,17 @@
 		    <artifactId>infinispan-remote-query-client</artifactId>
 		    <version>11.0.4.Final</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjrt</artifactId>
+		    <version>1.9.20.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>1.9.20.1</version>
+		</dependency>
   </dependencies>
   <build>
   		<plugins>
@@ -55,6 +66,30 @@
                     <target>11</target>
                 </configuration>
             </plugin>
+            <plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>aspectj-maven-plugin</artifactId>
+			    <version>1.14.0</version>
+			    <configuration>
+			        <complianceLevel>11</complianceLevel>
+			        <source>11</source>
+			        <target>11</target>
+			        <showWeaveInfo>true</showWeaveInfo>
+			        <verbose>true</verbose>
+			        <Xlint>ignore</Xlint>
+			        <encoding>UTF-8 </encoding>
+			    </configuration>
+			    <executions>
+			        <execution>
+			            <goals>
+			                <!-- use this goal to weave all your main classes -->
+			                <goal>compile</goal>
+			                <!-- use this goal to weave all your test classes -->
+			                <goal>test-compile</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>
   		</plugins>
   </build>
 </project>

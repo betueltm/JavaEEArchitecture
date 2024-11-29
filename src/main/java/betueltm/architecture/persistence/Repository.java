@@ -9,13 +9,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.TypedQuery;
 
-import betueltm.architecture.cache.CacheFactory;
-
 public class Repository<T extends Identifier<Long>> {
 	
 	private EntityManager entityManager;
 	protected Class<T> entityClass;
-	private boolean cacheEnabled = true; 
 
 	public Repository(Class<T> entityClass) {
 		this.entityClass = entityClass;
@@ -33,20 +30,13 @@ public class Repository<T extends Identifier<Long>> {
 		if(Objects.isNull(primaryKey)) return null;
 		T entity = null;
 		
-		if(cacheEnabled) entity = findInCache(primaryKey);
-		
 		if(Objects.isNull(entity)) {
 			entity = find(entityClass, primaryKey);
-			if(Objects.nonNull(entity)) insertOrUpdateCache(entity);
 		}
 		
 		return entity;
 	}
 	
-	private T findInCache(Long primaryKey) {
-		return CacheFactory.getCache().getValue(primaryKey.toString(), entityClass);
-	}
-
 	private <E> E find(Class<E> entityClass, Long primaryKey) {
 		try{
 		    return getEntityManager().find(entityClass, primaryKey);
@@ -57,11 +47,6 @@ public class Repository<T extends Identifier<Long>> {
 	
 	public void persist(T entity) {
 		getEntityManager().persist(entity);
-		if(cacheEnabled) insertOrUpdateCache(entity);
-	}
-
-	private void insertOrUpdateCache(T entity) {
-		CacheFactory.getCache().setValue(entity.getId().toString(), entity);
 	}
 	
 	public TypedQuery<T> createTypedQuery(StringBuilder sqlStringBuilder){
