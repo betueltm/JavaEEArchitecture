@@ -10,7 +10,7 @@ public abstract class CacheInterceptor extends CacheInvoker {
 	}
 
 	protected Cache resolveCache(CacheOperationContext context) {
-		//TODO : implement a better strategy
-		return new CacheInfinispan();
+		String cacheName = context.getCacheName();
+		return CacheInfinispanProvider.getInstance().resolveCache(cacheName);
 	}
 }

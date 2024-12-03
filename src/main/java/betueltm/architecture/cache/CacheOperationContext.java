@@ -8,11 +8,13 @@ public class CacheOperationContext {
 	private Object target; 
 	private Method method;
 	private Object[] args;
+	private String cacheName;
 	
-	public CacheOperationContext(Object target, Method method, Object[] args) {
+	public CacheOperationContext(Object target, Method method, Object[] args, String cacheName) {
 		this.target = target;
 		this.method = method;
 		this.args = args;
+		this.cacheName = cacheName;
 	}
 
 	public Object getTarget() {
@@ -37,6 +39,14 @@ public class CacheOperationContext {
 
 	public void setArgs(Object[] args) {
 		this.args = args;
+	}
+	
+	public String getCacheName() {
+		return cacheName;
+	}
+
+	public void setCacheName(String cacheName) {
+		this.cacheName = cacheName;
 	}
 
 	@Override
