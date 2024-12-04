@@ -25,6 +25,7 @@ public class CustomSerializationMarshaller extends AbstractMarshaller {
 	
 	public CustomSerializationMarshaller() {
 		this.whiteList = new ClassWhiteList();
+		//TODO : make this generic
 		whiteList.addClasses(Car.class, List.class, ArrayList.class);
 	}
 

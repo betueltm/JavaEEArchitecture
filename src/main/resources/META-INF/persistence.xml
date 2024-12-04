@@ -18,17 +18,11 @@
       <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
       <property name="hibernate.show_sql" value="true" />
       <property name="hibernate.format_sql" value="true" />
-      <property name="hibernate.generate_statistics" value="true"/>
+      <property name="hibernate.generate_statistics" value="false"/>
       <property name="jboss.entity.manager.jndi.name" value="java:app/EntityManager"/>
       <property name="hibernate.criteria.literal_handling_mode" value="bind" /> 
       <property name="hibernate.id.new_generator_mappings" value="true" />
       <property name="hibernate.id.optimizer.pooled.preferred" value="none" />
-
-<!-- 	  <property name="hibernate.cache.infinispan.localCache" value="false"/> -->
-<!-- 	  <property name="hibernate.cache.use_second_level_cache" value="true"/> -->
-<!-- 	  <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.infinispan.InfinispanRegionFactory"/> -->
-<!-- 	  <property name="hibernate.cache.infinispan.remote.configuration_file" value="infinispan-hotrod-client.xml"/> -->
-<!-- 	  <property name="hibernate.cache.infinispan.remoteCacheContainer" value="myHotRodCache"/> -->
     </properties>
   </persistence-unit>
 </persistence>

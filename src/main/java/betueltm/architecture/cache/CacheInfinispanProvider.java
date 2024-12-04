@@ -27,9 +27,9 @@ public class CacheInfinispanProvider {
 	
 	private void configureInfinispanRemoteCacheManager() {
 		ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
-		configurationBuilder.clientIntelligence(ClientIntelligence.TOPOLOGY_AWARE);
+		configurationBuilder.clientIntelligence(ClientIntelligence.HASH_DISTRIBUTION_AWARE);
 		configurationBuilder.addServers("localhost:11223");
-		configurationBuilder.addCluster("infinispan-site-A").addClusterNode("localhost", 11223);
+//		configurationBuilder.addCluster("infinispan-site-A").addClusterNode("localhost", 11223);
 		configurationBuilder.security().authentication().saslMechanism("SCRAM-SHA-512").username("admin").password("password");
 		configurationBuilder.marshaller(new CustomSerializationMarshaller());
 		configurationBuilder.statistics().enable();

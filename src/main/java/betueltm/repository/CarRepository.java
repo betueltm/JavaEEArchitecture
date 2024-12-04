@@ -21,4 +21,10 @@ public class CarRepository extends Repository<Car> {
 		TypedQuery<Car> typedQuery = createTypedQuery(query);
 		return getResultList(typedQuery);
 	}
+	
+	@Override
+	@Cachable
+	public Car find(Long primaryKey) {
+		return super.find(primaryKey);
+	}
 }

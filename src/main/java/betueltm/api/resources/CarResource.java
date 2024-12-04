@@ -26,6 +26,7 @@ public class CarResource {
 	@GET
 	@Path("test")
 	public List<Car> test() throws NoSuchMethodException, SecurityException {
+		System.out.println("consultando..");
 		CarRepository carRepository = new CarRepository();
 		return carRepository.findAll(1L);
 	}	
@@ -33,6 +34,7 @@ public class CarResource {
 	@GET
 	@Path("{id}")
 	public CarDTO getCar(@PathParam("id") Long id) {
+		System.out.println("getting car id: " + id);
 		CarRepository carRepository = new CarRepository();
 		Car car = carRepository.find(id);
 		return convertToDTO(car);

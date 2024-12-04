@@ -11,7 +11,19 @@ import betueltm.architecture.cache.CacheResultInterceptor;
 public class CacheAspect {
 
 	@Around("@annotation(cachable) && call(* *(..))")
-	public Object around(ProceedingJoinPoint proceedingJoinPoint, Cachable cachable) throws NoSuchMethodException, SecurityException {
+	public Object around(ProceedingJoinPoint proceedingJoinPoint, Cachable cachable) {
+		boolean isCacheEnabled = Boolean.getBoolean("cache.enabled");
+		if(isCacheEnabled) return useCacheInterceptor(proceedingJoinPoint, cachable);
+		
+		try {
+			return proceedingJoinPoint.proceed();
+		} catch (Throwable throwable) {
+			throwable.printStackTrace();
+			return null;
+		}
+	}
+
+	private Object useCacheInterceptor(ProceedingJoinPoint proceedingJoinPoint, Cachable cachable) {
 		CacheResultInterceptor cacheInterceptor = new CacheResultInterceptor();
 		return cacheInterceptor.invoke(CacheAspectUtil.createCacheOperationContext(proceedingJoinPoint, cachable), () -> {
 			try {
