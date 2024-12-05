@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
-import betueltm.architecture.cache.Cachable;
+import betueltm.architecture.cache.Cacheable;
 import betueltm.architecture.persistence.Repository;
 import betueltm.model.Car;
 
@@ -14,7 +14,7 @@ public class CarRepository extends Repository<Car> {
 		super(Car.class);
 	}
 
-	@Cachable
+	@Cacheable
 	public List<Car> findAll(Long number) {
 		StringBuilder query = new StringBuilder();
 		query.append("select car from Car car");
@@ -23,7 +23,7 @@ public class CarRepository extends Repository<Car> {
 	}
 	
 	@Override
-	@Cachable
+	@Cacheable
 	public Car find(Long primaryKey) {
 		return super.find(primaryKey);
 	}

@@ -4,8 +4,11 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Objects;
 
+import betueltm.architecture.util.StringUtil;
+
 public class CacheOperationContext {
-	private Object target; 
+	private String key;
+	private Object target;
 	private Method method;
 	private Object[] args;
 	private String cacheName;
@@ -15,6 +18,22 @@ public class CacheOperationContext {
 		this.method = method;
 		this.args = args;
 		this.cacheName = cacheName;
+	}
+	
+	public CacheOperationContext(String key, Object target, Method method, Object[] args, String cacheName) {
+		this.key = key;
+		this.target = target;
+		this.method = method;
+		this.args = args;
+		this.cacheName = cacheName;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
 	}
 
 	public Object getTarget() {
@@ -68,5 +87,9 @@ public class CacheOperationContext {
 			return false;
 		CacheOperationContext other = (CacheOperationContext) obj;
 		return Arrays.deepEquals(args, other.args) && Objects.equals(method, other.method);
+	}
+	
+	public boolean hasKey() {
+		return StringUtil.notEmpty(key);
 	}
 }

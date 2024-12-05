@@ -5,7 +5,7 @@ public abstract class CacheInterceptor extends CacheInvoker {
 	protected abstract Object invoke(CacheOperationContext context, CacheOperationInvoker invoker);
 	
 	protected Object generateKey(CacheOperationContext context) {
-		//TODO : make sure that this will be sufficient
+		if(context.hasKey()) return context.getKey();
 		return context.hashCode();
 	}
 

@@ -7,7 +7,8 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface Cachable {
+public @interface Cacheable {
 
-	String cacheName() default "application-default";
+	String cacheName() default CacheNameList.DEFAULT_CACHE_NAME;
+	String key() default "";
 }

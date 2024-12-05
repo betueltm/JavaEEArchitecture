@@ -7,8 +7,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.infinispan.commons.configuration.ClassWhiteList;
 import org.infinispan.commons.dataconversion.MediaType;
@@ -17,16 +15,13 @@ import org.infinispan.commons.io.ByteBufferImpl;
 import org.infinispan.commons.marshall.AbstractMarshaller;
 import org.infinispan.commons.marshall.CheckedInputStream;
 
-import betueltm.model.Car;
-
 public class CustomSerializationMarshaller extends AbstractMarshaller {
 
 	final ClassWhiteList whiteList;
 	
 	public CustomSerializationMarshaller() {
 		this.whiteList = new ClassWhiteList();
-		//TODO : make this generic
-		whiteList.addClasses(Car.class, List.class, ArrayList.class);
+		whiteList.addRegexps("betueltm.*");
 	}
 
 	@Override
