@@ -3,7 +3,7 @@ package betueltm.aop;
 import java.lang.reflect.Method;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.Signature;
+import org.aspectj.lang.reflect.CodeSignature;
 
 import betueltm.architecture.cache.CacheEvict;
 import betueltm.architecture.cache.CacheOperationContext;
@@ -22,7 +22,7 @@ public class CacheOperationContextFactory {
 	
 	private static CacheOperationContext newCacheOperationContext(String keyPattern, String cacheName,	ProceedingJoinPoint proceedingJoinPoint) {
 		Object[] args = proceedingJoinPoint.getArgs();
-		Method method = getMethodFromSignature(args, proceedingJoinPoint.getSignature());
+		Method method = getMethodFromSignature(args, (CodeSignature) proceedingJoinPoint.getSignature());
 		Object target = proceedingJoinPoint.getTarget();
 		cacheName = PropertyUtil.getEnvironment() + "-" + cacheName;
 
@@ -30,7 +30,7 @@ public class CacheOperationContextFactory {
 	}
 
 	@SuppressWarnings("unchecked")
-	private static Method getMethodFromSignature(Object[] args, Signature signature) {
+	private static Method getMethodFromSignature(Object[] args, CodeSignature signature) {
 		try {
 			String methodName = signature.getName();
 			return signature.getDeclaringType().getMethod(methodName, mapParameters(args));

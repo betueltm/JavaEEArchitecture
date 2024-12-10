@@ -30,4 +30,8 @@ public class CacheInfinispan implements Cache {
 	public Object get(Object key) {
 		return remoteCache.get(key);
 	}
+	
+	public void clearCache() {
+		remoteCache.clear();
+	}
 }

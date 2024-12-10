@@ -13,7 +13,7 @@ public class CacheResultInterceptor extends CacheInterceptor {
 		
 		if(Objects.isNull(cachedValue)) {
 			Object invocationResult = invoker.invoke();
-			doPut(cache, key, invocationResult);
+			if(Objects.nonNull(invocationResult)) doPut(cache, key, invocationResult);
 			
 			return invocationResult;
 		}

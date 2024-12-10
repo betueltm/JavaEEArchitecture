@@ -49,6 +49,19 @@ public class Repository<T extends Identifier<Long>> {
 		getEntityManager().persist(entity);
 	}
 	
+	public void remove(Long primaryKey) {
+		T entityReference = getReference(entityClass, primaryKey);
+		remove(entityReference);
+	}
+	
+	public void remove(T entity) {
+		getEntityManager().remove(entity);
+	}
+	
+	protected T getReference(Class<T> entityClass, Long primaryKey) {
+        return getEntityManager().getReference(entityClass, primaryKey);
+    }
+	
 	public TypedQuery<T> createTypedQuery(StringBuilder sqlStringBuilder){
 		return createTypedQuery(sqlStringBuilder.toString());
 	}
