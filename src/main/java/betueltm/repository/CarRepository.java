@@ -31,13 +31,13 @@ public class CarRepository extends Repository<Car> {
 	}
 	
 	@Override
-	@CacheEvict(key = "entity.id")
+	@CacheEvict(key = "entity.id", evictAllEntries = true)
 	public void remove(Car entity) {
 		super.remove(entity);
 	}
 	
 	@Override
-	@CacheEvict(key = "entity.id")
+	@CacheEvict(key = "primaryKey")
 	public void remove(Long primaryKey) {
 		super.remove(primaryKey);
 	}
