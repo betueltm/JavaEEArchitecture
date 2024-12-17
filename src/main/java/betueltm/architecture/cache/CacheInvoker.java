@@ -27,4 +27,12 @@ public abstract class CacheInvoker {
 			exception.printStackTrace();
 		}
 	}
+	
+	protected void doEvictAllEntries(Cache cache) {
+		try {
+			cache.clear();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+	}
 }

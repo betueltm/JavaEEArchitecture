@@ -9,7 +9,9 @@ public class CacheEvictInterceptor extends CacheInterceptor {
 		Cache cache = resolveCache(context);
 		Object key = generateKey(context);
 		
-		doEvict(cache, key);
+		if(context.isEvictAllEntries()) doEvictAllEntries(cache);
+		else doEvict(cache, key);
+		
 		return invocationResult;
 	}
 

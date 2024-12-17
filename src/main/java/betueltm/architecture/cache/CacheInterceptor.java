@@ -1,16 +1,24 @@
 package betueltm.architecture.cache;
 
-import betueltm.architecture.util.StringUtil;
+import java.util.Objects;
 
 public abstract class CacheInterceptor extends CacheInvoker {
 
 	protected abstract Object invoke(CacheOperationContext context, CacheOperationInvoker invoker);
 	
 	protected Object generateKey(CacheOperationContext context) {
-		String key = context.getKey();
-		if(StringUtil.notEmpty(key)) return generateSpecificKey(key, context);
+		Object key = context.getKey();
+		if(Objects.nonNull(key)) return generateCustomKey(context, key);
 		
 		return generateGenericKey(context);
+	}
+	
+	private Object generateCustomKey(CacheOperationContext context, Object key) {
+		Object target = context.getTarget();
+		Class<? extends Object> targetClass = target.getClass();
+		String canonicalName = targetClass.getCanonicalName();
+		
+		return key.hashCode() + canonicalName.hashCode();
 	}
 
 	private Object generateGenericKey(CacheOperationContext context) {
@@ -19,14 +27,6 @@ public abstract class CacheInterceptor extends CacheInvoker {
 		String canonicalName = targetClass.getCanonicalName();
 		
 		return context.hashCode() + canonicalName.hashCode();
-	}
-
-	private Object generateSpecificKey(String key, CacheOperationContext context) {
-		Object[] args = context.getArgs();
-		for (Object arg : args) {
-			;
-		}
-		return null;
 	}
 
 	protected Cache resolveCache(CacheOperationContext context) {

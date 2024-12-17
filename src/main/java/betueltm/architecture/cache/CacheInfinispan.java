@@ -31,7 +31,8 @@ public class CacheInfinispan implements Cache {
 		return remoteCache.get(key);
 	}
 	
-	public void clearCache() {
+	@Override
+	public void clear() {
 		remoteCache.clear();
 	}
 }

@@ -4,35 +4,28 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Objects;
 
-import betueltm.architecture.util.StringUtil;
-
 public class CacheOperationContext {
-	private String key;
+	private Object key;
 	private Object target;
 	private Method method;
 	private Object[] args;
 	private String cacheName;
+	private boolean evictAllEntries;
 	
-	public CacheOperationContext(Object target, Method method, Object[] args, String cacheName) {
-		this.target = target;
-		this.method = method;
-		this.args = args;
-		this.cacheName = cacheName;
-	}
-	
-	public CacheOperationContext(String key, Object target, Method method, Object[] args, String cacheName) {
+	public CacheOperationContext(Object key, Object target, Method method, Object[] args, String cacheName, boolean evictAllEntries) {
 		this.key = key;
 		this.target = target;
 		this.method = method;
 		this.args = args;
 		this.cacheName = cacheName;
+		this.evictAllEntries = evictAllEntries;
 	}
 
-	public String getKey() {
+	public Object getKey() {
 		return key;
 	}
 
-	public void setKey(String key) {
+	public void setKey(Object key) {
 		this.key = key;
 	}
 
@@ -68,6 +61,14 @@ public class CacheOperationContext {
 		this.cacheName = cacheName;
 	}
 
+	public boolean isEvictAllEntries() {
+		return evictAllEntries;
+	}
+
+	public void setEvictAllEntries(boolean evictAllEntries) {
+		this.evictAllEntries = evictAllEntries;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -86,9 +87,5 @@ public class CacheOperationContext {
 			return false;
 		CacheOperationContext other = (CacheOperationContext) obj;
 		return Arrays.deepEquals(args, other.args) && Objects.equals(method, other.method);
-	}
-	
-	public boolean hasKey() {
-		return StringUtil.notEmpty(key);
 	}
 }

@@ -25,20 +25,26 @@ public class CarRepository extends Repository<Car> {
 	}
 	
 	@Override
-	@Cacheable
+	@Cacheable(key = "primaryKey")
 	public Car find(Long primaryKey) {
 		return super.find(primaryKey);
 	}
 	
 	@Override
-	@CacheEvict
+	@CacheEvict(key = "entity.id")
 	public void remove(Car entity) {
 		super.remove(entity);
 	}
 	
 	@Override
-	@CacheEvict
+	@CacheEvict(key = "entity.id")
 	public void remove(Long primaryKey) {
 		super.remove(primaryKey);
+	}
+	
+	@Override
+	@CacheEvict(key = "entity.id")
+	public void persist(Car entity) {
+		super.persist(entity);
 	}
 }

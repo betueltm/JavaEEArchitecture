@@ -11,4 +11,5 @@ public @interface CacheEvict {
 
 	String cacheName() default CacheNameList.DEFAULT_CACHE_NAME;
 	String key() default "";
+	boolean evictAllEntries() default false; 
 }
