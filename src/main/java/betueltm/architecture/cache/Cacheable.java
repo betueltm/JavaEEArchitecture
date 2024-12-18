@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface Cacheable {
 
-	String cacheName() default CacheNameList.DEFAULT_CACHE_NAME;
+	String cacheName() default CacheNameList.DEFAULT;
 	String key() default "";
 }

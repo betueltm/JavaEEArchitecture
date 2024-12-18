@@ -40,7 +40,7 @@ public class CarResource {
 	@POST
 	@Path("clear-cache")
 	public void clearCache() {
-		CacheInfinispan cache = CacheInfinispanProvider.getInstance().resolveCache(PropertyUtil.getEnvironment() + "-" + CacheNameList.DEFAULT_CACHE_NAME);
+		CacheInfinispan cache = CacheInfinispanProvider.getInstance().resolveCache(PropertyUtil.getEnvironment() + "-" + CacheNameList.DEFAULT);
 		cache.clear();
 	}
 	

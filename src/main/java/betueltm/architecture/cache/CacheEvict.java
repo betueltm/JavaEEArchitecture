@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface CacheEvict {
 
-	String cacheName() default CacheNameList.DEFAULT_CACHE_NAME;
+	String cacheName() default CacheNameList.DEFAULT;
 	String key() default "";
 	boolean evictAllEntries() default false; 
 }

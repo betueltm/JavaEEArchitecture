@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.Aspect;
 import betueltm.architecture.cache.CacheEvict;
 import betueltm.architecture.cache.CacheEvictInterceptor;
 import betueltm.architecture.cache.CacheOperationContext;
+import betueltm.architecture.cache.CacheOperationContextFactory;
 import betueltm.architecture.cache.CacheResultInterceptor;
 import betueltm.architecture.cache.Cacheable;
 import betueltm.architecture.util.PropertyUtil;

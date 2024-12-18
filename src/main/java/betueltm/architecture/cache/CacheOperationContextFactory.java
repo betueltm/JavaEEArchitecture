@@ -1,23 +1,19 @@
-package betueltm.aop;
+package betueltm.architecture.cache;
 
 import java.lang.reflect.Method;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.CodeSignature;
 
-import betueltm.architecture.cache.CacheEvict;
-import betueltm.architecture.cache.CacheKeyParser;
-import betueltm.architecture.cache.CacheOperationContext;
-import betueltm.architecture.cache.Cacheable;
 import betueltm.architecture.util.PropertyUtil;
 
 public class CacheOperationContextFactory {
 
-	protected static CacheOperationContext createCacheOperationContext(ProceedingJoinPoint proceedingJoinPoint, Cacheable cacheable) {
+	public static CacheOperationContext createCacheOperationContext(ProceedingJoinPoint proceedingJoinPoint, Cacheable cacheable) {
 		return newCacheOperationContext(cacheable.key(), cacheable.cacheName(), false, proceedingJoinPoint);
 	}
 
-	protected static CacheOperationContext createCacheOperationContext(ProceedingJoinPoint proceedingJoinPoint, CacheEvict cacheEvict) {
+	public static CacheOperationContext createCacheOperationContext(ProceedingJoinPoint proceedingJoinPoint, CacheEvict cacheEvict) {
 		return newCacheOperationContext(cacheEvict.key(), cacheEvict.cacheName(), cacheEvict.evictAllEntries(), proceedingJoinPoint);
 	}
 	
