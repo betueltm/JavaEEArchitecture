@@ -1,2 +1,2 @@
-# JavaTests
-Simple Repository for Java Tests
+# JavaArchitecture
+Simple JavaEE architecture repository.
